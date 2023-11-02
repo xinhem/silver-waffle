@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn,OneOrMore, OneToMany} from 'typeorm'
+import {TypeLabel} from '../../type_label/entities/type_label.entity'
 
 @Entity()
 export class Type {
@@ -15,4 +16,8 @@ export class Type {
 
     @CreateDateColumn()
     createTime: Date;
+
+    @OneToMany(()=>TypeLabel,typelabel => typelabel.type_label)
+    typelabels: number;
+
 }

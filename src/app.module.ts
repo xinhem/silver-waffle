@@ -9,6 +9,17 @@ import { AdminModule } from './admin/admin.module';
 import { TypeModule } from './type/type.module';
 import { ReadDetailsModule } from './read_details/read_details.module';
 import { BookshelfModule } from './bookshelf/bookshelf.module';
+import { ChapterModule } from './chapter/chapter.module';
+import { CommentModule } from './comment/comment.module';
+import { ChartsModule } from './charts/charts.module';
+import { SubjectModule } from './subject/subject.module';
+import { BookListModule } from './book_list/book_list.module';
+import { BookListCommentModule } from './book_list_comment/book_list_comment.module';
+import { VideoManageModule } from './video_manage/video_manage.module';
+import { LabelModule } from './label/label.module';
+import { TypeLabelModule } from './type_label/type_label.module';
+import { ParagraphModule } from './paragraph/paragraph.module';
+
 
 @Module({
   imports: [
@@ -35,7 +46,17 @@ import { BookshelfModule } from './bookshelf/bookshelf.module';
     AdminModule,
     TypeModule,
     ReadDetailsModule,
-    BookshelfModule],
+    BookshelfModule,
+    ChapterModule,
+    CommentModule,
+    ChartsModule,
+    SubjectModule,
+    BookListModule,
+    BookListCommentModule,
+    VideoManageModule,
+    LabelModule,
+    TypeLabelModule,
+    ParagraphModule,],
   controllers: [AppController],
   providers: [AppService],
 })

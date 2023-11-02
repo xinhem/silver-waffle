@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ReadDetailsService } from './read_details.service';
 import { CreateReadDetailDto } from './dto/create-read_detail.dto';
 import { UpdateReadDetailDto } from './dto/update-read_detail.dto';
 
-@Controller('read-details')
+@Controller('/api/read')
 export class ReadDetailsController {
   constructor(private readonly readDetailsService: ReadDetailsService) {}
 
@@ -13,22 +13,29 @@ export class ReadDetailsController {
   }
 
   @Get()
-  findAll() {
-    return this.readDetailsService.findAll();
+  findAll(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+    @Query('type') type: string,
+  ) {
+    return this.readDetailsService.findAll(page, limit,type);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.readDetailsService.findOne(+id);
+  @Get('/charts')
+  findOne(@Query('id') id: number,@Query('type') type: string){
+    return this.readDetailsService.findOne(+id,type);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReadDetailDto: UpdateReadDetailDto) {
-    return this.readDetailsService.update(+id, updateReadDetailDto);
+  @Post('/addRead')
+  addReadDetails(@Body() createReadDetailDto: CreateReadDetailDto){
+    return this.readDetailsService.addAll(createReadDetailDto)
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.readDetailsService.remove(+id);
+
+  @Get('/charts/read')
+  findAllChartsRead(@Query('type') type: string,
+                    @Query('charts_type') charts_type: string,
+  ){
+    return this.readDetailsService.findAllChartsRead(type,charts_type)
   }
 }
